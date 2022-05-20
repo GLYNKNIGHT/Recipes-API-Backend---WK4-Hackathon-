@@ -80,17 +80,17 @@ export const patchRecipeByID = function(req, res) {
     for (let i = 0; i < recipes.length; i++) {
         if (Number(recipeId) === recipes[i].id) {
             if(title) {
-                recipes.title = title;
+                recipes[i].title = title;
                 console.log(title)
             }
             if(ingredients) {
-                recipes.ingredients = ingredients;
+                recipes[i].ingredients = ingredients;
             }
             if(instructions) {
-                recipes.instructions = instructions;
+                recipes[i].instructions = instructions;
             }
             if(image) {
-                recipes.image = image;
+                recipes[i].image = image;
             }
         }
     }
