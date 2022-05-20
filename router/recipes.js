@@ -32,4 +32,20 @@ recipes.push(newRecipe);
 const responseObject = {success: true, data: newRecipe}
 res.json(responseObject)
 });
+
+//Put new recipe in place of outlineWidth: 
+recipesRouter.put("/:id", function (req, res) {
+  const recipeId = req.params.id;
+  const upDatedRecipe = req.body;
+  for ( let i = 0; i < recipes.length; i++){
+    if (Number(recipeId) === recipes[i].id){
+      recipes.push(upDatedRecipe);
+      break;
+    }
+  }
+  const responseObject = {success: true, data: upDatedRecipe}
+  res.json(responseObject)
+})
+
+
 export default recipesRouter;
