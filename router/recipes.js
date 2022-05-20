@@ -33,7 +33,7 @@ const responseObject = {success: true, data: newRecipe}
 res.json(responseObject)
 });
 
-//Put new recipe in place of outlineWidth: 
+//Put new recipe in place of old one.
 recipesRouter.put("/:id", function (req, res) {
   const recipeId = req.params.id;
   const upDatedRecipe = req.body;
@@ -46,6 +46,20 @@ recipesRouter.put("/:id", function (req, res) {
   const responseObject = {success: true, data: upDatedRecipe}
   res.json(responseObject)
 })
+
+recipesRouter.delete("/:id", function (req, res) {
+  const recipeId = req.params.id;
+  for ( let i = 0; i < recipes.length; i++){
+    if (Number(recipeId) === recipes[i].id){
+      let deletedRecipe = recipes[i];
+      recipes.splice(deletedRecipe);///
+      const responseObject = {success: true, data: deletedRecipe}
+      res.json(responseObject)
+      break;
+    }
+  }
+});
+
 
 
 export default recipesRouter;
