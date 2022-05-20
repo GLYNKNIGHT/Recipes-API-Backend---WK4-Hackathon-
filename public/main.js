@@ -1,4 +1,4 @@
-const url = "";
+const url = "http://localhost:3000";
 
 const recipesSection = document.querySelector("#recipes");
 const getRecipeButton = document.querySelector("#get-recipes");
@@ -62,10 +62,10 @@ function handleClick(event) {
 
 async function getRecipes() {
   const response = await fetch(`${url}/recipes`);
-  const { payload } = await response.json();
+  const payload = await response.json();
   recipesSection.innerHTML = "";
   console.log(payload);
-  payload.forEach(renderRecipe);
+  payload.data.forEach(renderRecipe);
 }
 
 function renderRecipe(recipe) {

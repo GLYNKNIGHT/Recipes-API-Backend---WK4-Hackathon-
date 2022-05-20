@@ -72,3 +72,31 @@ export const deleteRecipeByID = function(req, res) {
         }
     }
 }
+
+// PATCH A RECIPE BY ID
+export const patchRecipeByID = function(req, res) {
+    const recipeId = req.params.id;
+    const { title, ingredients, instructions, image } = req.body;
+    for (let i = 0; i < recipes.length; i++) {
+        if (Number(recipeId) === recipes[i].id) {
+            if(title) {
+                recipes.title = title;
+                console.log(title)
+            }
+            if(ingredients) {
+                recipes.ingredients = ingredients;
+            }
+            if(instructions) {
+                recipes.instructions = instructions;
+            }
+            if(image) {
+                recipes.image = image;
+            }
+        }
+    }
+    const responseObject = {
+        success: true,
+        data: recipeId
+    }
+    res.json(responseObject)
+}

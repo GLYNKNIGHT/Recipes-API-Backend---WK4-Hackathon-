@@ -6,7 +6,8 @@ import {
     getRecipeByID,
     createRecipe,
     updateRecipeByID,
-    deleteRecipeByID
+    deleteRecipeByID,
+    patchRecipeByID
 } from "../models/recipes.js";
 
 const app = express();
@@ -26,6 +27,8 @@ recipesRouter.put("/:id", updateRecipeByID)
 //Deletes recipe by ID
 recipesRouter.delete("/:id", deleteRecipeByID);
 
+//Patch recipe by id
+recipesRouter.patch("/:id", patchRecipeByID);
 
 
 export default recipesRouter;
