@@ -1,16 +1,74 @@
 import recipes from "../libs/recipes.js";
 
+
 // GET ALL RECIPES
-export function getRecipes() {}
+export const getRecipes = function(req, res) {
+    const responseObject = {
+        success: true,
+        data: recipes
+    }
+    res.json(responseObject)
+}
 
 // GET A RECIPE BY ID
-export function getRecipeByID(id) {}
+export const getRecipeByID = function(req, res) {
+    const recipeId = req.params.id;
+    let foundRecipe = {}
+    for (let i = 0; i < recipes.length; i++) {
+        if (Number(recipeId) === recipes[i].id) {
+            foundRecipe = recipes[i];
+            break;
+        }
+    }
+    const responseObject = {
+        success: true,
+        data: foundRecipe
+    }
+    res.json(responseObject)
+}
 
 // CREATE A RECIPE
-export function createRecipe(newRecipe) {}
+export const createRecipe = function(req, res) {
+    const newRecipe = req.body;
+    recipes.push(newRecipe);
+
+    const responseObject = {
+        success: true,
+        data: newRecipe
+    }
+    res.json(responseObject)
+}
 
 // UPDATE A RECIPE BY ID
-export function updateRecipeByID(id, updatedRecipe) {}
+export const updateRecipeByID = function(req, res) {
+    const recipeId = req.params.id;
+    const upDatedRecipe = req.body;
+    for (let i = 0; i < recipes.length; i++) {
+        if (Number(recipeId) === recipes[i].id) {
+            recipes.push(upDatedRecipe);
+            break;
+        }
+    }
+    const responseObject = {
+        success: true,
+        data: upDatedRecipe
+    }
+    res.json(responseObject)
+}
 
 // DELETE A RECIPE BY ID
-export function deleteRecipeByID(id) {}
+export const deleteRecipeByID = function(req, res) {
+    const recipeId = req.params.id;
+    for (let i = 0; i < recipes.length; i++) {
+        if (Number(recipeId) === recipes[i].id) {
+            let deletedRecipe = recipes[i];
+            recipes.splice(deletedRecipe); ///
+            const responseObject = {
+                success: true,
+                data: deletedRecipe
+            }
+            res.json(responseObject)
+            break;
+        }
+    }
+}
